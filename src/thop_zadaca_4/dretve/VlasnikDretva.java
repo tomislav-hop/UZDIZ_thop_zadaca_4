@@ -113,7 +113,7 @@ public class VlasnikDretva extends Thread {
         }
     }
 
-    public boolean baremJedanAutoParkiran() {
+    private boolean baremJedanAutoParkiran() {
         for (Automobil auto : ParkingApplication.auti) {
             if (auto.isNaParkiralistu() == true) {
                 return true;

@@ -14,11 +14,7 @@ import java.util.Date;
 public class Automobil {
 
     private int automobilID;
-    //private int zonaUKojojSeNalazi;
-    private int maxProduzenjaZone;
-
     private Zona zona;
-
     private boolean naParkiralistu;
     private int cijenaKojuPlaca;
     private Date vrijemeParkiranja;
@@ -38,7 +34,7 @@ public class Automobil {
     }
 
     public boolean produljiParkiranje() {
-        if (brojProduljenja <= maxProduzenjaZone) {
+        if (brojProduljenja <= zona.getMaksimalniBrojProduljenja()) {
             brojProduljenja++;
             return true;
         }
@@ -98,14 +94,6 @@ public class Automobil {
 
     public void setBrojProduljenja(int brojProduljenja) {
         this.brojProduljenja = brojProduljenja;
-    }
-
-    public int getMaxProduzenjaZone() {
-        return maxProduzenjaZone;
-    }
-
-    public void setMaxProduzenjaZone(int maxProduzenjaZone) {
-        this.maxProduzenjaZone = maxProduzenjaZone;
     }
 
     public Zona getZona() {

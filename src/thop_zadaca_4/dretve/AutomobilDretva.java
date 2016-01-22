@@ -36,14 +36,13 @@ public class AutomobilDretva extends Thread {
 
     @Override
     public void run() {
-        while (true) { 
+        while (true) {
             if (!sviAutoParkirani()) {
                 //System.err.println("ULAZ AUTOMOBILA ...");
                 if (!ParkingApplication.zaustaviDolaskeAutomobila) {
                     ulazAutomobila();
                 }
             }
-
             try {
                 float rand1 = gsv.vrijemeRazmakaDolazaka();
                 int random1 = (int) (rand1 * 1000);
@@ -53,6 +52,7 @@ public class AutomobilDretva extends Thread {
                 ex.printStackTrace();
                 break;
             }
+
         }
     }
 
@@ -75,28 +75,25 @@ public class AutomobilDretva extends Thread {
                 //TODO Odabiremo zonu na normalan nacin ne po formuli
                 int odabranaZona = gsv.random_broj(1, argumenti.get(1));
                 //System.out.println("Auto " + auto.getAutomobilID() + " ulazi na parkiraliste... i odabire zonu broj: " + odabranaZona);
+                //System.err.println("random zona: " + gsv.odabirZone());
 
                 //ako je kapacitet zone veći od popunjenosti još ima mjesta za auto u zoni
                 int kapacitetZone = ParkingApplication.zone.get(odabranaZona - 1).getKapacitetZone();
                 int popunjenostZone = ParkingApplication.zone.get(odabranaZona - 1).getPopunjenostZone();
                 if (kapacitetZone > popunjenostZone) {
-                    //System.out.println("Zona nije puna!");
-
-                    //postavljanje da je auto parkiran, postavljanje njegove zone i cijene koju plaća, te kada je parkiran
                     auto.setNaParkiralistu(true);
-                    //auto.setZonaUKojojSeNalazi(odabranaZona);
                     auto.setCijenaKojuPlaca(ParkingApplication.zone.get(odabranaZona - 1).getCijenaParkiranjaUZoni());
-                    auto.setMaxProduzenjaZone(ParkingApplication.zone.get(odabranaZona-1).getMaksimalniBrojProduljenja());
-
+                    
+                    //plaća parkiranje po jedinici vremena u zoni koja se izračunava po formuli ((brojZona + 1 - i) * cijenaJedinice) 
                     int naKolikoSeDugoParkira = (argumenti.get(1) + 1 - odabranaZona) * argumenti.get(7);
                     auto.setNaKolikoSeParkira(naKolikoSeDugoParkira);
-
+                    
+                    auto.setZona(ParkingApplication.zone.get(odabranaZona - 1));
                     //povećavanja brojaca auta u ozni
                     ParkingApplication.zone.get(odabranaZona - 1).dodajAutoUZonu();
-                    auto.setZona(ParkingApplication.zone.get(odabranaZona-1));
-                    
+
                     //povecavanje zarade zone
-                    ParkingApplication.zone.get(odabranaZona-1).dodajparkiranje(naKolikoSeDugoParkira);
+                    ParkingApplication.zone.get(odabranaZona - 1).dodajparkiranje(naKolikoSeDugoParkira);
 
                     //spremanje ulaza auta u dnevnik
                     PodaciOAutomobilima poa = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(), "Dolazak automobila", "A");
@@ -110,7 +107,7 @@ public class AutomobilDretva extends Thread {
                     //ukoliko je zona puna ništa se ne događa i auto samo izlazi sa parkirališta
                     //System.out.println("Zona je puna te auto izlazi iz parkirališta!");
                     PodaciOAutomobilima poa = new PodaciOAutomobilima(auto, odabranaZona, 0, "Izlaz(ZONA JE PUNA)", "A");
-                    ParkingApplication.zone.get(odabranaZona-1).odbijenAutomobil();
+                    ParkingApplication.zone.get(odabranaZona - 1).odbijenAutomobil();
                     poa.ispisZapisaDnevnika();
                     ParkingApplication.dnevnik.add(poa);
 

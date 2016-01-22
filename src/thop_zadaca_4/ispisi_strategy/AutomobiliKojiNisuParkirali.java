@@ -20,7 +20,7 @@ public class AutomobiliKojiNisuParkirali implements Ispis {
         System.out.println("Automobili koji nisu mogli parkirati po zonama");
         //int brojacAutomobila;
         for (Zona zona : ParkingApplication.zone) {
-            System.out.println("Broj automobila: " + zona.getBrojacOdbijenihAutomobila());
+            System.out.println("Zona broj: " + zona.getBrojZone() + "\tBroj automobila: " + zona.getBrojacOdbijenihAutomobila());
         }
     }
 

@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import thop_zadaca_4.GeneriranjeSvihVrijednosti;
 import thop_zadaca_4.dretve.AutomobilDretva;
+import thop_zadaca_4.dretve.KontolorDretva;
 import thop_zadaca_4.dretve.VlasnikDretva;
 import thop_zadaca_4.izbornikCommand.IspisIzbornika;
 import thop_zadaca_4.izbornikCommand.IzvrsiOpciju;
@@ -127,11 +128,18 @@ public class ParkingApplication {
             vd.setGsv(gsv);
             vd.setArgumenti(argumenti);
             vd.start();
+            
+            //pokretanje dretve kontrolora
+            KontolorDretva kd = new KontolorDretva();
+            kd.setGsv(gsv);
+            kd.setArgumenti(argumenti);
+            kd.start();
 
             do {
                 IspisIzbornika ispisIzbornika = new IspisIzbornika();
                 ispisIzbornika.ispisiIzbornik();
-                System.out.println("Vaš odabir: ");
+                //System.out.println("Vaš odabir: ");
+                System.out.println(delimiter);
                 odabranaOpcija = ispisIzbornika.odabranaOpcija();
                 //System.out.println("Odabrana opcija je: " + ispisIzbornika.odabranaOpcija());
 
@@ -185,6 +193,7 @@ public class ParkingApplication {
             
             ad.interrupt();
             vd.interrupt();
+            kd.interrupt();
         }
     }
 }

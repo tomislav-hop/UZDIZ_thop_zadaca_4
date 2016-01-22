@@ -34,9 +34,8 @@ public class Zona {
         brojacOdbijenihAutomobila = 0;
         brojacDeponij = 0;
     }
-    
-    public void autoIdeNaDeponij()
-    {
+
+    public void autoIdeNaDeponij() {
         brojacDeponij++;
     }
 
@@ -61,7 +60,9 @@ public class Zona {
         if (vrijemeParkiranja == -1) {
             zaradaPoParkiranju += cijenaParkiranjaUZoni;
         } else {
-            int zarada = (vrijemeParkiranja / vrijemeParkiranjaUZoni) * cijenaParkiranjaUZoni;
+            //dijelim vrijeme parkiranja sa jedinicom vremena parkiranja te taj broj zaokružujem na sljedeći cijeli nakon cega izracunavam cijenu parkiranja
+            float zarada = (int)Math.ceil(((float)vrijemeParkiranja / (float)vrijemeParkiranjaUZoni))*cijenaParkiranjaUZoni;
+            //3System.err.println("vrijemeParkiranja = " + vrijemeParkiranja + "\nvrijemeParkiranjaUZoni = " + vrijemeParkiranjaUZoni + "\ncijenParkiranjaUZoni" + cijenaParkiranjaUZoni + "\nZarada = " + zarada);
             zaradaPoParkiranju += zarada;
         }
     }
