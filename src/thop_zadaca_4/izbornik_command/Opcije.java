@@ -63,8 +63,6 @@ public class Opcije {
         System.out.println("Opcija 6");
         OdabirIspisa oi = new OdabirIspisa(new IspisDeponiji());
         oi.izvediIspis();
-
-        System.out.println(delimiter);
     }
 
     public void opcija7() {

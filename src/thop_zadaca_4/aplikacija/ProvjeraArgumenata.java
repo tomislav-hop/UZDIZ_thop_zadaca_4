@@ -6,6 +6,7 @@
 package thop_zadaca_4.aplikacija;
 
 /**
+ * Provjera svih argumenata koji se prosljeđuju aplikaciji
  *
  * @author Tomislav
  */

@@ -23,6 +23,7 @@ public class AutomobilDretva extends Thread {
     private GeneriranjeSvihVrijednosti gsv;
     private List<Integer> argumenti;
     /*
+     Indeksi od argumenata
      0 brojAutomobila
      1 brojZona
      2 kapacitetZone
@@ -37,18 +38,20 @@ public class AutomobilDretva extends Thread {
 
     @Override
     public void run() {
+        //beskonacna petlja koja osigurava da auti stalno dolaze
         while (true) {
+            //provjera ako su svi automobili parkirani
             if (!sviAutoParkirani()) {
-                //System.err.println("ULAZ AUTOMOBILA ...");
+                //u slučaju pauziranja dolazaka automobila ne poziva se funkcija za dolaske
                 if (!ParkingApplication.zaustaviDolaskeAutomobila) {
                     ulazAutomobila();
                 }
             }
             try {
+                //pozivanje funkcije koja generira vrijeme razmaka
                 float rand1 = gsv.vrijemeRazmakaDolazaka();
                 int random1 = (int) (rand1 * 1000);
                 sleep(random1);
-                //System.out.println("Razmak od " + rand1 + " sekundi");
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
                 break;
@@ -73,67 +76,52 @@ public class AutomobilDretva extends Thread {
             //ako automobil nije na parkiralistu on pokusava uc na njega
             if (auto.isNaParkiralistu() == false) {
                 //auto odabire zonu
-                //TODO Odabiremo zonu na normalan nacin ne po formuli
                 int odabranaZona = gsv.random_broj(1, argumenti.get(1));
-                //System.out.println("Auto " + auto.getAutomobilID() + " ulazi na parkiraliste... i odabire zonu broj: " + odabranaZona);
-                //System.err.println("random zona: " + gsv.odabirZone());
 
                 //ako je kapacitet zone veći od popunjenosti još ima mjesta za auto u zoni
                 int kapacitetZone = ParkingApplication.zone.get(odabranaZona - 1).getKapacitetZone();
                 int popunjenostZone = ParkingApplication.zone.get(odabranaZona - 1).getPopunjenostZone();
                 if (kapacitetZone > popunjenostZone) {
+                    //dodavanje auta na parkiralište i postavljanje svih varijabli automobila
                     auto.setNaParkiralistu(true);
                     auto.setCijenaKojuPlaca(ParkingApplication.zone.get(odabranaZona - 1).getCijenaParkiranjaUZoni());
-                    
                     long vrijemeDolaska = System.currentTimeMillis();
                     Timestamp dolazak = new Timestamp(vrijemeDolaska);
-                    
                     auto.setVrijemeParkiranja(dolazak);
-                    
-                    //plaća parkiranje po jedinici vremena u zoni koja se izračunava po formuli ((brojZona + 1 - i) * cijenaJedinice) 
-                    int naKolikoSeDugoParkira = ParkingApplication.zone.get(odabranaZona-1).getVrijemeParkiranjaUZoni();//(argumenti.get(1) + 1 - odabranaZona) * argumenti.get(7);
+                    int naKolikoSeDugoParkira = ParkingApplication.zone.get(odabranaZona - 1).getVrijemeParkiranjaUZoni();//(argumenti.get(1) + 1 - odabranaZona) * argumenti.get(7);
                     auto.setNaKolikoSeParkira(naKolikoSeDugoParkira);
-                    
                     auto.setZona(ParkingApplication.zone.get(odabranaZona - 1));
-                    //povećavanja brojaca auta u ozni
+                    //povećavanja brojaca auta u zoni
                     ParkingApplication.zone.get(odabranaZona - 1).dodajAutoUZonu();
-
                     //povecavanje zarade zone
                     ParkingApplication.zone.get(odabranaZona - 1).dodajparkiranje(naKolikoSeDugoParkira);
-
                     //spremanje ulaza auta u dnevnik
-                    PodaciOAutomobilima poa = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(),dolazak, "Dolazak automobila", "A");
-                    //poa.datumIVrijeme(vrijemeDolaska);
-                    //poa.setVrijeme(dolazak);
+                    PodaciOAutomobilima poa = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(), dolazak, "Dolazak automobila", "A");
                     poa.ispisZapisaDnevnika();
                     ParkingApplication.dnevnik.add(poa);
 
                     //izlaz iz funkcije
                     return;
-
                 } else {
                     //ukoliko je zona puna ništa se ne događa i auto samo izlazi sa parkirališta
-                    //System.out.println("Zona je puna te auto izlazi iz parkirališta!");
                     Timestamp dolazak = new Timestamp(System.currentTimeMillis());
-                    PodaciOAutomobilima poa = new PodaciOAutomobilima(auto, odabranaZona, 0,dolazak, "Izlaz(ZONA JE PUNA)", "A");
+                    PodaciOAutomobilima poa = new PodaciOAutomobilima(auto, odabranaZona, 0, dolazak, "Izlaz(ZONA JE PUNA)", "A");
                     ParkingApplication.zone.get(odabranaZona - 1).odbijenAutomobil();
-                    //poa.datumIVrijeme(System.currentTimeMillis());
                     poa.ispisZapisaDnevnika();
                     ParkingApplication.dnevnik.add(poa);
-
                     //budući da auto nije ušao stavljam ga na kraj liste kako bi opet pokušao nakon svih automobila
                     ParkingApplication.auti.remove(auto);
-                    //auto.setNaParkiralistu(false);
                     ParkingApplication.auti.add(auto);
-
                     return;
                 }
-            } else {
-                //System.out.println("Auto vec je na parkiralistu!");
             }
         }
     }
 
+    /**
+     * Provjera ako su svi auto parkirani
+     * @return 
+     */
     private boolean sviAutoParkirani() {
         for (Automobil auto : ParkingApplication.auti) {
             if (auto.isNaParkiralistu() == false) {

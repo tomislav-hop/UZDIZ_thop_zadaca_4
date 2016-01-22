@@ -138,12 +138,9 @@ public class ParkingApplication {
             kd.start();
 
             do {
-
-                //System.out.println("Vaš odabir: ");
                 System.out.println(delimiter);
                 odabranaOpcija = ispisIzbornika.odabranaOpcija();
-                //System.out.println("Odabrana opcija je: " + ispisIzbornika.odabranaOpcija());
-
+                
                 Opcije opcije = new Opcije();
                 IzvrsiOpciju izvrsiOpciju = new IzvrsiOpciju();
 
@@ -188,9 +185,13 @@ public class ParkingApplication {
                         izvrsiOpciju.uhvatiOdabranuOpciju(op8);
                         izvrsiOpciju.izvrsiOdabraneOpcije();
                         break;
-
+                    default:
+                        System.out.println(delimiter);
+                        System.out.println("Nema te opcije!");
                 }
             } while (!odabranaOpcija.equals("Q"));
+            System.out.println(delimiter);
+            System.out.println("Gašenje aplikacije...");
             System.exit(0);
         }
     }

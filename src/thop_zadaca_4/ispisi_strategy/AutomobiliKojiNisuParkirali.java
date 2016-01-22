@@ -20,7 +20,6 @@ public class AutomobiliKojiNisuParkirali implements Ispis, Container {
     @Override
     public void ispisiOpciju() {
         System.out.println("Automobili koji nisu mogli parkirati po zonama");
-        //int brojacAutomobila;
         for (Iterator iter = new AutomobiliKojiNisuParkirali.ZonaIterator(); iter.hasNext();) {
             Zona zona = (Zona) iter.next();
             System.out.println("Zona broj: " + zona.getBrojZone() + "\tBroj automobila: " + zona.getBrojacOdbijenihAutomobila());
