@@ -18,10 +18,10 @@ public class BrojacAutomobila implements KomunikacijaSlojeva {
 
     @Override
     public Object izvrsiSvojuMetodu(List<PodaciOAutomobilima> dnevnik, List<Automobil> auti) {
-        System.out.println("Brojanje automobila");
+        //System.out.println("Brojanje automobila");
         
         for(PodaciOAutomobilima poa : dnevnik){
-            if(poa.getStatus() == "Dolazak automobila")
+            if(poa.getStatus().equals("Dolazak automobila"))
             {
                 auti.get(poa.getAuto().getAutomobilID()-1).povecajBrojParkiranja();
             }

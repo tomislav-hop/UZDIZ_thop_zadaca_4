@@ -20,7 +20,7 @@ public class DohvacanjeAutomobila implements KomunikacijaSlojeva {
 
     @Override
     public Object izvrsiSvojuMetodu(List<PodaciOAutomobilima> dnevnik, List<Automobil> auti) {
-        System.out.println("Dohvaćanje automobila");
+        //System.out.println("Dohvaćanje automobila");
         
         List<Automobil> listaAutomobila = new ArrayList<>();
         
