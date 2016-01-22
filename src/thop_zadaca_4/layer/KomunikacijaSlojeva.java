@@ -10,7 +10,7 @@ import thop_zadaca_4.podaci.Automobil;
 import thop_zadaca_4.podaci.PodaciOAutomobilima;
 
 /**
- *
+ * Sučelje za layer uzorak
  * @author Tomislav
  */
 public interface KomunikacijaSlojeva {

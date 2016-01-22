@@ -15,15 +15,13 @@ import thop_zadaca_4.podaci.PodaciOAutomobilima;
 import thop_zadaca_4.podaci.SimpleAuto;
 
 /**
- *
+ * Layer koji uzima listu automobila prebacuje ju u jednostavnu listu, sortira ju te ispisuje
  * @author Tomislav
  */
 public class IspisAutomobila implements KomunikacijaSlojeva {
 
     @Override
     public Object izvrsiSvojuMetodu(List<PodaciOAutomobilima> dnevnik, List<Automobil> auti) {
-        //List<Automobil> listaPobrojanih = new ArrayList<>();
-
         List<SimpleAuto> jednostavnaLista = new ArrayList<>();
 
         int i = 1;
@@ -31,11 +29,6 @@ public class IspisAutomobila implements KomunikacijaSlojeva {
             jednostavnaLista.add(new SimpleAuto(i, auto.getBrojParkiranja()));
             i++;
         }
-        
-        /*System.out.println("Ispis svih automobila sa brojem parkiranja");
-        for (SimpleAuto auto : jednostavnaLista) {
-            System.out.println("ID: " + auto.getIdAuto() + "\tParkiranja: " + auto.getBrojParkiranja());
-        }*/
 
         System.out.println(ParkingApplication.delimiter);
         ObjectComparator oc = new ObjectComparator();
@@ -50,7 +43,6 @@ public class IspisAutomobila implements KomunikacijaSlojeva {
                 break;
             }
         }
-
         return null;
     }
 

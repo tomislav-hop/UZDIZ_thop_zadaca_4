@@ -10,21 +10,20 @@ import thop_zadaca_4.podaci.Automobil;
 import thop_zadaca_4.podaci.SimpleAuto;
 
 /**
+ * Komparator koji koristim kako bi sortirao jednostavnu listu po broju
+ * parkiranja
  *
  * @author Tomislav
  */
-public class ObjectComparator implements Comparator<SimpleAuto>{
+public class ObjectComparator implements Comparator<SimpleAuto> {
 
     @Override
     public int compare(SimpleAuto o1, SimpleAuto o2) {
         if (o1.getBrojParkiranja() <= o2.getBrojParkiranja()) {
-                return 1;
-            } else {
-                return -1;
-            }
+            return 1;
+        } else {
+            return -1;
+        }
     }
 
-
-    
-    
 }

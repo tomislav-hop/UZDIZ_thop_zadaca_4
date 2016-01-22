@@ -10,7 +10,7 @@ import thop_zadaca_4.podaci.Automobil;
 import thop_zadaca_4.podaci.PodaciOAutomobilima;
 
 /**
- *
+ * Prvi layer koji poziva sve ostale layere
  * @author Tomislav
  */
 public class IspisTop5Automobila {
@@ -22,11 +22,6 @@ public class IspisTop5Automobila {
     public IspisTop5Automobila(List<PodaciOAutomobilima> dnevnik, List<Automobil> auti) {
         this.dnevnikPomocni = dnevnik;
         this.listaAuta = auti;
-    }
-    
-    public void prikupiIAnalizirajPodatke()
-    {
-        
     }
 
     public void dohvatiAutomobileSve() {

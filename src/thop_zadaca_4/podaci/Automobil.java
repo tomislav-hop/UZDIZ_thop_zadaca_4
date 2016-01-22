@@ -50,19 +50,11 @@ public class Automobil {
         this.automobilID = automobilID;
     }
 
-    /*public int getZonaUKojojSeNalazi() {
-     return zonaUKojojSeNalazi;
-     }
-
-     public void setZonaUKojojSeNalazi(int zonaUKojojSeNalazi) {
-     this.zonaUKojojSeNalazi = zonaUKojojSeNalazi;
-     }*/
     public boolean isNaParkiralistu() {
         return naParkiralistu;
     }
 
     public void setNaParkiralistu(boolean naParkiralistu) {
-        //System.err.println("Parkiranje: " + naParkiralistu + "\tID: " + this.automobilID);
         this.naParkiralistu = naParkiralistu;
     }
 

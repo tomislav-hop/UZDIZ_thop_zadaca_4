@@ -11,6 +11,8 @@ import thop_zadaca_4.podaci.Automobil;
 import thop_zadaca_4.podaci.PodaciOAutomobilima;
 
 /**
+ * Sloj koji broji koliko se puta koji automobil pojavio u dnevniku i povecava
+ * brojac parkiranja za taj automobil
  *
  * @author Tomislav
  */
@@ -18,15 +20,16 @@ public class BrojacAutomobila implements KomunikacijaSlojeva {
 
     @Override
     public Object izvrsiSvojuMetodu(List<PodaciOAutomobilima> dnevnik, List<Automobil> auti) {
-        //System.out.println("Brojanje automobila");
-        
-        for(PodaciOAutomobilima poa : dnevnik){
-            if(poa.getStatus().equals("Dolazak automobila"))
-            {
-                auti.get(poa.getAuto().getAutomobilID()-1).povecajBrojParkiranja();
+        for (PodaciOAutomobilima poa : dnevnik) {
+            if (poa.getStatus().equals("Dolazak automobila")) {
+                try {
+                    auti.get(poa.getAuto().getAutomobilID() - 1).povecajBrojParkiranja();
+                } catch (Exception e) {
+                    
+                }
+
             }
         }
-        
         return auti;
     }
 

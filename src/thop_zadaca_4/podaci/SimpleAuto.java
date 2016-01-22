@@ -6,10 +6,12 @@
 package thop_zadaca_4.podaci;
 
 /**
+ * Klasa korištena za sortiranje liste po broju parkiranja pomoću Comparator-a
  *
  * @author Tomislav
  */
 public class SimpleAuto {
+
     private int idAuto;
     private int brojParkiranja;
 
@@ -33,5 +35,5 @@ public class SimpleAuto {
     public void setIdAuto(int idAuto) {
         this.idAuto = idAuto;
     }
-    
+
 }

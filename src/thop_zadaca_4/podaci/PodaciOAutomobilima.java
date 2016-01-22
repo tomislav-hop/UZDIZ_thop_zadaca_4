@@ -16,7 +16,6 @@ import java.util.Date;
  */
 public class PodaciOAutomobilima {
 
-    //DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss:SSS dd.MM.yyyy");
     private String tip;
     private Automobil auto;
     private Timestamp vrijeme;
@@ -33,13 +32,7 @@ public class PodaciOAutomobilima {
         this.status = status;
     }
 
-    /*public void datumIVrijeme(long vrijemeDolaska) {
-     Timestamp vrijemeDolaskaTimestamp = new Timestamp(vrijemeDolaska);
-     //Date date = new Date();
-     this.vrijeme = vrijemeDolaskaTimestamp;
-     }*/
     public void ispisZapisaDnevnika() {
-        //+ "\tParking na: " + auto.getNaKolikoSeParkira() + " sec"
         if (auto.getZona() != null) {
             System.out.println(tip + "\tAuto ID: " + auto.getAutomobilID() + "\t" + vrijeme + "\t\tZona: " + auto.getZona().getBrojZone() + "\t\tIznos: " + iznos + "\tStatus: " + status);
         } else {

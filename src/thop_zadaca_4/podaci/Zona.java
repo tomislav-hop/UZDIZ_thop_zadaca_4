@@ -45,7 +45,6 @@ public class Zona {
 
     public void dodajAutoUZonu() {
         popunjenostZone++;
-        //System.out.println("Popunjenost zone je: " + popunjenostZone);
     }
 
     public void ukloniAutoIzZone() {
@@ -60,9 +59,7 @@ public class Zona {
         if (vrijemeParkiranja == -1) {
             zaradaPoParkiranju += cijenaParkiranjaUZoni;
         } else {
-            //dijelim vrijeme parkiranja sa jedinicom vremena parkiranja te taj broj zaokružujem na sljedeći cijeli nakon cega izracunavam cijenu parkiranja
             float zarada = (int)Math.ceil(((float)vrijemeParkiranja / (float)vrijemeParkiranjaUZoni))*cijenaParkiranjaUZoni;
-            //3System.err.println("vrijemeParkiranja = " + vrijemeParkiranja + "\nvrijemeParkiranjaUZoni = " + vrijemeParkiranjaUZoni + "\ncijenParkiranjaUZoni" + cijenaParkiranjaUZoni + "\nZarada = " + zarada);
             zaradaPoParkiranju += zarada;
         }
     }

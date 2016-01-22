@@ -185,9 +185,6 @@ public class ParkingApplication {
                         izvrsiOpciju.uhvatiOdabranuOpciju(op8);
                         izvrsiOpciju.izvrsiOdabraneOpcije();
                         break;
-                    default:
-                        System.out.println(delimiter);
-                        System.out.println("Nema te opcije!");
                 }
             } while (!odabranaOpcija.equals("Q"));
             System.out.println(delimiter);

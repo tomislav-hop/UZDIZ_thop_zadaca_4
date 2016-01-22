@@ -11,7 +11,7 @@ import thop_zadaca_4.podaci.Automobil;
 import thop_zadaca_4.podaci.PodaciOAutomobilima;
 
 /**
- *
+ * Sloj koji samo dohvaća sve automobile i sprema ih novu listu automobila
  * @author Tomislav
  */
 public class DohvacanjeAutomobila implements KomunikacijaSlojeva {
@@ -20,16 +20,11 @@ public class DohvacanjeAutomobila implements KomunikacijaSlojeva {
 
     @Override
     public Object izvrsiSvojuMetodu(List<PodaciOAutomobilima> dnevnik, List<Automobil> auti) {
-        //System.out.println("Dohvaćanje automobila");
-        
         List<Automobil> listaAutomobila = new ArrayList<>();
-        
         for(Automobil auto : auti)
         {
             listaAutomobila.add(new Automobil(auto.getAutomobilID()));
         }
-        
-        
         return listaAutomobila;
     }
 }
