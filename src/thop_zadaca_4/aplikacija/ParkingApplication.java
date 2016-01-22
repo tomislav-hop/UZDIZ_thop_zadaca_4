@@ -8,7 +8,6 @@ package thop_zadaca_4.aplikacija;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import thop_zadaca_4.GeneriranjeSvihVrijednosti;
 import thop_zadaca_4.dretve.AutomobilDretva;
 import thop_zadaca_4.dretve.KontolorDretva;
 import thop_zadaca_4.dretve.VlasnikDretva;

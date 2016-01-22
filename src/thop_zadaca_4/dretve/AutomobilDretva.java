@@ -7,7 +7,7 @@ package thop_zadaca_4.dretve;
 
 import java.sql.Timestamp;
 import java.util.List;
-import thop_zadaca_4.GeneriranjeSvihVrijednosti;
+import thop_zadaca_4.aplikacija.GeneriranjeSvihVrijednosti;
 import thop_zadaca_4.aplikacija.ParkingApplication;
 import thop_zadaca_4.podaci.Automobil;
 import thop_zadaca_4.podaci.PodaciOAutomobilima;
