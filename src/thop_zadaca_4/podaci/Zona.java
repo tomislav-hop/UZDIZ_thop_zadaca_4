@@ -19,6 +19,8 @@ public class Zona {
     private int maksimalniBrojProduljenja;
     private int zaradaPoParkiranju;
     private int zaradaPoKaznama;
+    private int brojacOdbijenihAutomobila;
+    private int brojacDeponij;
 
     public Zona(int brojZone, int kapacitetZone, int maksParkiranje, int vremenskaJedinica, int brojZona, int cijenaJedinice) {
         this.brojZone = brojZone;
@@ -29,6 +31,17 @@ public class Zona {
         this.popunjenostZone = 0;
         this.zaradaPoParkiranju = 0;
         this.zaradaPoKaznama = 0;
+        brojacOdbijenihAutomobila = 0;
+        brojacDeponij = 0;
+    }
+    
+    public void autoIdeNaDeponij()
+    {
+        brojacDeponij++;
+    }
+
+    public void odbijenAutomobil() {
+        brojacOdbijenihAutomobila++;
     }
 
     public void dodajAutoUZonu() {
@@ -48,7 +61,7 @@ public class Zona {
         if (vrijemeParkiranja == -1) {
             zaradaPoParkiranju += cijenaParkiranjaUZoni;
         } else {
-            int zarada = (vrijemeParkiranja/vrijemeParkiranjaUZoni)*cijenaParkiranjaUZoni;
+            int zarada = (vrijemeParkiranja / vrijemeParkiranjaUZoni) * cijenaParkiranjaUZoni;
             zaradaPoParkiranju += zarada;
         }
     }
@@ -103,6 +116,22 @@ public class Zona {
 
     public int getMaksimalniBrojProduljenja() {
         return maksimalniBrojProduljenja;
+    }
+
+    public int getZaradaPoParkiranju() {
+        return zaradaPoParkiranju;
+    }
+
+    public int getZaradaPoKaznama() {
+        return zaradaPoKaznama;
+    }
+
+    public int getBrojacOdbijenihAutomobila() {
+        return brojacOdbijenihAutomobila;
+    }
+
+    public int getBrojacDeponij() {
+        return brojacDeponij;
     }
 
 }

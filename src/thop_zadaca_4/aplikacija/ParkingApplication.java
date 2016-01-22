@@ -16,6 +16,11 @@ import thop_zadaca_4.izbornikCommand.IzvrsiOpciju;
 import thop_zadaca_4.izbornikCommand.Opcija1;
 import thop_zadaca_4.izbornikCommand.Opcija2;
 import thop_zadaca_4.izbornikCommand.Opcija3;
+import thop_zadaca_4.izbornikCommand.Opcija4;
+import thop_zadaca_4.izbornikCommand.Opcija5;
+import thop_zadaca_4.izbornikCommand.Opcija6;
+import thop_zadaca_4.izbornikCommand.Opcija7;
+import thop_zadaca_4.izbornikCommand.Opcija8;
 import thop_zadaca_4.izbornikCommand.Opcije;
 import thop_zadaca_4.podaci.Automobil;
 import thop_zadaca_4.podaci.PodaciOAutomobilima;
@@ -29,9 +34,9 @@ public class ParkingApplication {
 
     private static ParkingApplication instance;
     public static String delimiter = "-----------------------------------------------------";
-    
+
     public static boolean zaustaviDolaskeAutomobila = false;
-    public static List<Automobil> auti; 
+    public static List<Automobil> auti;
     public static List<Zona> zone;
     public static List<PodaciOAutomobilima> dnevnik;
 
@@ -97,26 +102,26 @@ public class ParkingApplication {
             //generiranje zona
             GeneriranjeSvihVrijednosti gsv = new GeneriranjeSvihVrijednosti(argumenti);
             zone = gsv.generirajZone();
-            
+
             //ispis zona
             System.out.println(delimiter);
             for (Zona z : zone) {
                 z.ispisZone();
             }
             System.out.println(delimiter);
-            
+
             //popunjavanje liste automobila
             auti = Collections.synchronizedList(new ArrayList<>());
             for (int i = 1; i <= brojAutomobila; i++) {
                 auti.add(new Automobil(i));
             }
-            
+
             //pokretanje dretve za dolaske automobila
             AutomobilDretva ad = new AutomobilDretva();
             ad.setGsv(gsv);
             ad.setArgumenti(argumenti);
             ad.start();
-            
+
             //pokretanje dretve za vlasnike
             VlasnikDretva vd = new VlasnikDretva();
             vd.setGsv(gsv);
@@ -149,9 +154,37 @@ public class ParkingApplication {
                         izvrsiOpciju.uhvatiOdabranuOpciju(op3);
                         izvrsiOpciju.izvrsiOdabraneOpcije();
                         break;
+                    case "4":
+                        Opcija4 op4 = new Opcija4(opcije);
+                        izvrsiOpciju.uhvatiOdabranuOpciju(op4);
+                        izvrsiOpciju.izvrsiOdabraneOpcije();
+                        break;
+                    case "5":
+                        Opcija5 op5 = new Opcija5(opcije);
+                        izvrsiOpciju.uhvatiOdabranuOpciju(op5);
+                        izvrsiOpciju.izvrsiOdabraneOpcije();
+                        break;
+                    case "6":
+                        Opcija6 op6 = new Opcija6(opcije);
+                        izvrsiOpciju.uhvatiOdabranuOpciju(op6);
+                        izvrsiOpciju.izvrsiOdabraneOpcije();
+                        break;
+                    case "7":
+                        Opcija7 op7 = new Opcija7(opcije);
+                        izvrsiOpciju.uhvatiOdabranuOpciju(op7);
+                        izvrsiOpciju.izvrsiOdabraneOpcije();
+                        break;
+                    case "8":
+                        Opcija8 op8 = new Opcija8(opcije);
+                        izvrsiOpciju.uhvatiOdabranuOpciju(op8);
+                        izvrsiOpciju.izvrsiOdabraneOpcije();
+                        break;
 
                 }
             } while (!odabranaOpcija.equals("Q"));
+            
+            ad.interrupt();
+            vd.interrupt();
         }
     }
 }

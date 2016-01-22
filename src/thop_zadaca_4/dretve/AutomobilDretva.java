@@ -110,6 +110,7 @@ public class AutomobilDretva extends Thread {
                     //ukoliko je zona puna ništa se ne događa i auto samo izlazi sa parkirališta
                     //System.out.println("Zona je puna te auto izlazi iz parkirališta!");
                     PodaciOAutomobilima poa = new PodaciOAutomobilima(auto, odabranaZona, 0, "Izlaz(ZONA JE PUNA)", "A");
+                    ParkingApplication.zone.get(odabranaZona-1).odbijenAutomobil();
                     poa.ispisZapisaDnevnika();
                     ParkingApplication.dnevnik.add(poa);
 

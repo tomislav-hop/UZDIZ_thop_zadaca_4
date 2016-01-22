@@ -13,29 +13,32 @@ import java.util.Date;
  */
 public class Automobil {
 
-  
     private int automobilID;
     //private int zonaUKojojSeNalazi;
     private int maxProduzenjaZone;
-    
+
     private Zona zona;
-    
+
     private boolean naParkiralistu;
     private int cijenaKojuPlaca;
     private Date vrijemeParkiranja;
     private int naKolikoSeParkira;
     private int brojProduljenja;
-    
-      public Automobil(int automobilID) {
+    private int brojParkiranja;
+
+    public Automobil(int automobilID) {
         this.automobilID = automobilID;
         naParkiralistu = false;
         brojProduljenja = 0;
+        brojParkiranja = 0;
     }
-      
-    public boolean produljiParkiranje()
-    {
-        if(brojProduljenja <= maxProduzenjaZone)
-        {
+
+    public void povecajBrojParkiranja() {
+        brojParkiranja++;
+    }
+
+    public boolean produljiParkiranje() {
+        if (brojProduljenja <= maxProduzenjaZone) {
             brojProduljenja++;
             return true;
         }
@@ -51,13 +54,12 @@ public class Automobil {
     }
 
     /*public int getZonaUKojojSeNalazi() {
-        return zonaUKojojSeNalazi;
-    }
+     return zonaUKojojSeNalazi;
+     }
 
-    public void setZonaUKojojSeNalazi(int zonaUKojojSeNalazi) {
-        this.zonaUKojojSeNalazi = zonaUKojojSeNalazi;
-    }*/
-
+     public void setZonaUKojojSeNalazi(int zonaUKojojSeNalazi) {
+     this.zonaUKojojSeNalazi = zonaUKojojSeNalazi;
+     }*/
     public boolean isNaParkiralistu() {
         return naParkiralistu;
     }
@@ -114,6 +116,8 @@ public class Automobil {
         this.zona = zona;
     }
 
+    public int getBrojParkiranja() {
+        return brojParkiranja;
+    }
 
-    
 }
