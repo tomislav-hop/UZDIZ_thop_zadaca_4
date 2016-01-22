@@ -18,7 +18,7 @@ public class Zona {
     private int popunjenostZone;
     private int maksimalniBrojProduljenja;
     private int zaradaPoParkiranju;
-    private int zaradaPoKaznama;
+    private float zaradaPoKaznama;
     private int brojacOdbijenihAutomobila;
     private int brojacDeponij;
 
@@ -67,7 +67,7 @@ public class Zona {
         }
     }
 
-    public void dodajKaznu(int kazna) {
+    public void dodajKaznu(float kazna) {
         zaradaPoKaznama += kazna;
     }
 
@@ -123,7 +123,7 @@ public class Zona {
         return zaradaPoParkiranju;
     }
 
-    public int getZaradaPoKaznama() {
+    public float getZaradaPoKaznama() {
         return zaradaPoKaznama;
     }
 

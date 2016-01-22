@@ -12,17 +12,18 @@ import thop_zadaca_4.GeneriranjeSvihVrijednosti;
 import thop_zadaca_4.dretve.AutomobilDretva;
 import thop_zadaca_4.dretve.KontolorDretva;
 import thop_zadaca_4.dretve.VlasnikDretva;
-import thop_zadaca_4.izbornikCommand.IspisIzbornika;
-import thop_zadaca_4.izbornikCommand.IzvrsiOpciju;
-import thop_zadaca_4.izbornikCommand.Opcija1;
-import thop_zadaca_4.izbornikCommand.Opcija2;
-import thop_zadaca_4.izbornikCommand.Opcija3;
-import thop_zadaca_4.izbornikCommand.Opcija4;
-import thop_zadaca_4.izbornikCommand.Opcija5;
-import thop_zadaca_4.izbornikCommand.Opcija6;
-import thop_zadaca_4.izbornikCommand.Opcija7;
-import thop_zadaca_4.izbornikCommand.Opcija8;
-import thop_zadaca_4.izbornikCommand.Opcije;
+import thop_zadaca_4.ispisi_zona_iterator.IspisZona;
+import thop_zadaca_4.izbornik_command.IspisIzbornika;
+import thop_zadaca_4.izbornik_command.IzvrsiOpciju;
+import thop_zadaca_4.izbornik_command.Opcija1;
+import thop_zadaca_4.izbornik_command.Opcija2;
+import thop_zadaca_4.izbornik_command.Opcija3;
+import thop_zadaca_4.izbornik_command.Opcija4;
+import thop_zadaca_4.izbornik_command.Opcija5;
+import thop_zadaca_4.izbornik_command.Opcija6;
+import thop_zadaca_4.izbornik_command.Opcija7;
+import thop_zadaca_4.izbornik_command.Opcija8;
+import thop_zadaca_4.izbornik_command.Opcije;
 import thop_zadaca_4.podaci.Automobil;
 import thop_zadaca_4.podaci.PodaciOAutomobilima;
 import thop_zadaca_4.podaci.Zona;
@@ -57,7 +58,7 @@ public class ParkingApplication {
     }
 
     public void start(String[] args) {
-        dnevnik = new ArrayList<>();
+        dnevnik = Collections.synchronizedList(new ArrayList<>());
         ProvjeraArgumenata provjeraArgumenata = new ProvjeraArgumenata();
 
         if (provjeraArgumenata.provjera(args)) {
@@ -104,15 +105,14 @@ public class ParkingApplication {
             GeneriranjeSvihVrijednosti gsv = new GeneriranjeSvihVrijednosti(argumenti);
             zone = gsv.generirajZone();
 
-            //ispis zona
-            System.out.println(delimiter);
-            for (Zona z : zone) {
-                z.ispisZone();
-            }
+            //ispis zona iteratorom
+            IspisZona iz = new IspisZona();
+            iz.ispisZona();
+            
             System.out.println(delimiter);
 
             IspisIzbornika ispisIzbornika = new IspisIzbornika();
-                ispisIzbornika.ispisiIzbornik();
+            ispisIzbornika.ispisiIzbornik();
             //popunjavanje liste automobila
             auti = Collections.synchronizedList(new ArrayList<>());
             for (int i = 1; i <= brojAutomobila; i++) {
@@ -130,7 +130,7 @@ public class ParkingApplication {
             vd.setGsv(gsv);
             vd.setArgumenti(argumenti);
             vd.start();
-            
+
             //pokretanje dretve kontrolora
             KontolorDretva kd = new KontolorDretva();
             kd.setGsv(gsv);
@@ -138,7 +138,7 @@ public class ParkingApplication {
             kd.start();
 
             do {
-                
+
                 //System.out.println("Vaš odabir: ");
                 System.out.println(delimiter);
                 odabranaOpcija = ispisIzbornika.odabranaOpcija();
@@ -191,10 +191,7 @@ public class ParkingApplication {
 
                 }
             } while (!odabranaOpcija.equals("Q"));
-            
-            ad.interrupt();
-            vd.interrupt();
-            kd.interrupt();
+            System.exit(0);
         }
     }
 }

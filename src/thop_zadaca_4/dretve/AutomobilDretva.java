@@ -91,7 +91,7 @@ public class AutomobilDretva extends Thread {
                     auto.setVrijemeParkiranja(dolazak);
                     
                     //plaća parkiranje po jedinici vremena u zoni koja se izračunava po formuli ((brojZona + 1 - i) * cijenaJedinice) 
-                    int naKolikoSeDugoParkira = (argumenti.get(1) + 1 - odabranaZona) * argumenti.get(7);
+                    int naKolikoSeDugoParkira = ParkingApplication.zone.get(odabranaZona-1).getVrijemeParkiranjaUZoni();//(argumenti.get(1) + 1 - odabranaZona) * argumenti.get(7);
                     auto.setNaKolikoSeParkira(naKolikoSeDugoParkira);
                     
                     auto.setZona(ParkingApplication.zone.get(odabranaZona - 1));
@@ -123,6 +123,7 @@ public class AutomobilDretva extends Thread {
 
                     //budući da auto nije ušao stavljam ga na kraj liste kako bi opet pokušao nakon svih automobila
                     ParkingApplication.auti.remove(auto);
+                    //auto.setNaParkiralistu(false);
                     ParkingApplication.auti.add(auto);
 
                     return;

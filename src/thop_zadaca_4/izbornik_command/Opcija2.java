@@ -3,23 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package thop_zadaca_4.izbornikCommand;
+package thop_zadaca_4.izbornik_command;
+
+import java.util.List;
+import thop_zadaca_4.dretve.AutomobilDretva;
 
 /**
  *
  * @author Tomislav
  */
-public class Opcija7 implements OdaberiOpciju{
-    
+public class Opcija2 implements OdaberiOpciju {
+
     private Opcije izvrsiOpciju;
 
-    public Opcija7(Opcije izvrsiOpciju) {
+    public Opcija2(Opcije izvrsiOpciju) {
         this.izvrsiOpciju = izvrsiOpciju;
     }
 
     @Override
     public void odaberi() {
-        izvrsiOpciju.opcija7();
+        izvrsiOpciju.opcija2();
     }
-    
+
 }

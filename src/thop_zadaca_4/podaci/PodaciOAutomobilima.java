@@ -21,10 +21,10 @@ public class PodaciOAutomobilima {
     private Automobil auto;
     private Timestamp vrijeme;
     private int zona;
-    private int iznos;
+    private float iznos;
     private String status;
 
-    public PodaciOAutomobilima(Automobil auto, int zona, int iznos, Timestamp vrijeme, String status, String tip) {
+    public PodaciOAutomobilima(Automobil auto, int zona, float iznos, Timestamp vrijeme, String status, String tip) {
         this.auto = auto;
         this.vrijeme = vrijeme;
         this.tip = tip;
@@ -41,9 +41,9 @@ public class PodaciOAutomobilima {
     public void ispisZapisaDnevnika() {
         //+ "\tParking na: " + auto.getNaKolikoSeParkira() + " sec"
         if (auto.getZona() != null) {
-            System.out.println(tip + "\tAuto ID: " + auto.getAutomobilID() + "\tVrijeme: " + vrijeme + "\tVrijeme: " + auto.getVrijemeParkiranja() + "\tZona: " + auto.getZona().getBrojZone() + "\t\tStatus: " + status);
+            System.out.println(tip + "\tAuto ID: " + auto.getAutomobilID() + "\t" + vrijeme + "\t\tZona: " + auto.getZona().getBrojZone() + "\t\tIznos: " + iznos + "\tStatus: " + status);
         } else {
-            System.out.println(tip + "\tAuto ID: " + auto.getAutomobilID() + "\tVrijeme: " + vrijeme + "\tZona: nema" + "\t\tStatus: " + status);
+            System.out.println(tip + "\tAuto ID: " + auto.getAutomobilID() + "\t" + vrijeme + "\t\tZona: 0" + "\t\tIznos: " + iznos + "\tStatus: " + status);
         }
     }
 
@@ -71,7 +71,7 @@ public class PodaciOAutomobilima {
         this.zona = zona;
     }
 
-    public int getIznos() {
+    public float getIznos() {
         return iznos;
     }
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package thop_zadaca_4.izbornikCommand;
+package thop_zadaca_4.izbornik_command;
 
 import java.util.ArrayList;
 import java.util.List;

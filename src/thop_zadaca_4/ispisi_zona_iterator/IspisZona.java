@@ -3,25 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package thop_zadaca_4.ispisi_strategy;
+package thop_zadaca_4.ispisi_zona_iterator;
 
+import java.util.ArrayList;
+import java.util.List;
 import thop_zadaca_4.aplikacija.ParkingApplication;
-import thop_zadaca_4.ispisi_zona_iterator.Container;
-import thop_zadaca_4.ispisi_zona_iterator.Iterator;
 import thop_zadaca_4.podaci.Zona;
 
 /**
  *
  * @author Tomislav
  */
-public class IspisDeponiji implements Ispis, Container {
+public class IspisZona implements Container {
 
-    @Override
-    public void ispisiOpciju() {
-        System.out.println("Ispis broja automobila koje je pauk odvezao na deponij");
-        for (Iterator iter = new IspisDeponiji.ZonaIterator(); iter.hasNext();) {
+    //private List<Zona> zone = new ArrayList<>();
+
+    /*public IspisZona(List<Zona> zone) {
+        this.zone = zone;
+    }*/
+    
+    public void ispisZona() {
+        for (Iterator iter = new IspisZona.ZonaIterator(); iter.hasNext();) {
             Zona zona = (Zona) iter.next();
-            System.out.println("Zona broj " + zona.getBrojZone() + "\tBroj automobila: " + zona.getBrojacDeponij());
+            zona.ispisZone();
         }
     }
 
@@ -29,7 +33,7 @@ public class IspisDeponiji implements Ispis, Container {
     public Iterator getIterator() {
         return new ZonaIterator();
     }
-
+    
     private class ZonaIterator implements Iterator {
 
         int index;
@@ -50,4 +54,13 @@ public class IspisDeponiji implements Ispis, Container {
             return null;
         }
     }
+
+   /* public List<Zona> getZone() {
+        return zone;
+    }
+
+    public void setZone(List<Zona> zone) {
+        this.zone = zone;
+    }
+*/
 }

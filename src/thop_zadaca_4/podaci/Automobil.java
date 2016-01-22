@@ -62,6 +62,7 @@ public class Automobil {
     }
 
     public void setNaParkiralistu(boolean naParkiralistu) {
+        //System.err.println("Parkiranje: " + naParkiralistu + "\tID: " + this.automobilID);
         this.naParkiralistu = naParkiralistu;
     }
 
