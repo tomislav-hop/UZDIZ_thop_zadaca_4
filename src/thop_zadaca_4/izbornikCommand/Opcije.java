@@ -28,7 +28,6 @@ public class Opcije {
         System.out.println(delimiter);
         System.out.println("Opcija 1\nParkiralište zatvoreno za nove ulaze automobila");
         ParkingApplication.zaustaviDolaskeAutomobila = true;
-        System.out.println(delimiter);
 
     }
 
@@ -36,7 +35,6 @@ public class Opcije {
         System.out.println(delimiter);
         System.out.println("Opcija 2\nParkiralište otvoreno za nove ulaze automobila");
         ParkingApplication.zaustaviDolaskeAutomobila = false;
-        System.out.println(delimiter);
     }
 
     public void opcija3() {
@@ -44,7 +42,6 @@ public class Opcije {
         System.out.println("Opcija 3");
         OdabirIspisa oi = new OdabirIspisa(new ZaradaOdParkiranja());
         oi.izvediIspis();
-        System.out.println(delimiter);
     }
 
     public void opcija4() {
@@ -52,7 +49,6 @@ public class Opcije {
         System.out.println("Opcija 4");
         OdabirIspisa oi = new OdabirIspisa(new ZaradaOdKazni());
         oi.izvediIspis();
-        System.out.println(delimiter);
     }
 
     public void opcija5() {
@@ -60,7 +56,6 @@ public class Opcije {
         System.out.println("Opcija 5");
         OdabirIspisa oi = new OdabirIspisa(new AutomobiliKojiNisuParkirali());
         oi.izvediIspis();
-        System.out.println(delimiter);
     }
 
     public void opcija6() {
@@ -77,7 +72,6 @@ public class Opcije {
         System.out.println("Opcija 7");
         OdabirIspisa oi = new OdabirIspisa(new PetAutomobilaParkiranja());
         oi.izvediIspis();
-        System.out.println(delimiter);
     }
 
     public void opcija8() {
@@ -85,13 +79,11 @@ public class Opcije {
         System.out.println("Opcija 8");
         OdabirIspisa oi = new OdabirIspisa(new StanjeZona());
         oi.izvediIspis();
-        System.out.println(delimiter);
     }
 
     public void opcijaQ() {
         System.out.println(delimiter);
         System.out.println("Prekid rada programa");
-        System.out.println(delimiter);
     }
 
 }

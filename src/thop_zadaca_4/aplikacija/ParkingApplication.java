@@ -111,6 +111,8 @@ public class ParkingApplication {
             }
             System.out.println(delimiter);
 
+            IspisIzbornika ispisIzbornika = new IspisIzbornika();
+                ispisIzbornika.ispisiIzbornik();
             //popunjavanje liste automobila
             auti = Collections.synchronizedList(new ArrayList<>());
             for (int i = 1; i <= brojAutomobila; i++) {
@@ -136,8 +138,7 @@ public class ParkingApplication {
             kd.start();
 
             do {
-                IspisIzbornika ispisIzbornika = new IspisIzbornika();
-                ispisIzbornika.ispisiIzbornik();
+                
                 //System.out.println("Vaš odabir: ");
                 System.out.println(delimiter);
                 odabranaOpcija = ispisIzbornika.odabranaOpcija();

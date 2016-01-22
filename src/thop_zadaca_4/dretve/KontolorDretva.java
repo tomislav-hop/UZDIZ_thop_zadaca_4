@@ -5,11 +5,13 @@
  */
 package thop_zadaca_4.dretve;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import thop_zadaca_4.GeneriranjeSvihVrijednosti;
 import thop_zadaca_4.aplikacija.ParkingApplication;
 import thop_zadaca_4.podaci.Automobil;
+import thop_zadaca_4.podaci.PodaciOAutomobilima;
 
 /**
  *
@@ -30,7 +32,7 @@ public class KontolorDretva extends Thread {
         while (true) {
             try {
                 float rand1 = gsv.vrijemeRazmakaKontrolora();
-                int random1 = (int) (rand1 * 1000);              
+                int random1 = (int) (rand1 * 1000);
                 sleep(random1);
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
@@ -45,15 +47,29 @@ public class KontolorDretva extends Thread {
             for (Automobil auto : ParkingApplication.auti) {
 
                 if (auto.isNaParkiralistu()) {
-                    if(true){}
+                    if (provjeraParkiranja(auto.getVrijemeParkiranja(), auto.getNaKolikoSeParkira(), auto.getAutomobilID())) {
+                        Timestamp vrijeme = new Timestamp(System.currentTimeMillis());
+                        PodaciOAutomobilima poa = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(),vrijeme, "Parkiranje važeće", "K");
+                        //poa.datumIVrijeme(System.currentTimeMillis());
+                        poa.ispisZapisaDnevnika();
+                        ParkingApplication.dnevnik.add(poa);
+                        return;
+                    } else {
+                        Timestamp vrijeme = new Timestamp(System.currentTimeMillis());
+                        PodaciOAutomobilima poa = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(),vrijeme, "Pauk odvozi auto", "K");
+                        //poa.datumIVrijeme(System.currentTimeMillis());
+                        poa.ispisZapisaDnevnika();
+                        ParkingApplication.dnevnik.add(poa);
+                        return;
+                    }
                 }
             }
         }
 
     }
-    
-    private boolean provjeraParkiranja(Date kadaJeParkiran, int naKolikoJeParkiran)
-    {
+
+    private boolean provjeraParkiranja(Timestamp kadaJeParkiran, int naKolikoJeParkiran, int id) {
+        //System.err.println("AutoID " + id + "Kada je parkiran: " + kadaJeParkiran + "\nNa kooliko: " + naKolikoJeParkiran);
         return false;
     }
 

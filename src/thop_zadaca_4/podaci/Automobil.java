@@ -5,6 +5,7 @@
  */
 package thop_zadaca_4.podaci;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -17,7 +18,7 @@ public class Automobil {
     private Zona zona;
     private boolean naParkiralistu;
     private int cijenaKojuPlaca;
-    private Date vrijemeParkiranja;
+    private Timestamp vrijemeParkiranja;
     private int naKolikoSeParkira;
     private int brojProduljenja;
     private int brojParkiranja;
@@ -72,11 +73,11 @@ public class Automobil {
         this.cijenaKojuPlaca = cijenaKojuPlaca;
     }
 
-    public Date getVrijemeParkiranja() {
+    public Timestamp getVrijemeParkiranja() {
         return vrijemeParkiranja;
     }
 
-    public void setVrijemeParkiranja(Date vrijemeParkiranja) {
+    public void setVrijemeParkiranja(Timestamp vrijemeParkiranja) {
         this.vrijemeParkiranja = vrijemeParkiranja;
     }
 

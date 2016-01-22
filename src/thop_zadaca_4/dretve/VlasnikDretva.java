@@ -5,6 +5,7 @@
  */
 package thop_zadaca_4.dretve;
 
+import java.sql.Timestamp;
 import java.util.List;
 import thop_zadaca_4.GeneriranjeSvihVrijednosti;
 import thop_zadaca_4.aplikacija.ParkingApplication;
@@ -68,15 +69,18 @@ public class VlasnikDretva extends Thread {
                         case 0:
                             ParkingApplication.auti.remove(auto);
                             ParkingApplication.auti.add(auto);
-                            PodaciOAutomobilima poa1 = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(), "Ništa ne radi vlasnik", "V");
+                            Timestamp vrijeme = new Timestamp(System.currentTimeMillis());
+                            PodaciOAutomobilima poa1 = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(),vrijeme, "Ništa ne radi vlasnik", "V");
+                            //poa1.datumIVrijeme(System.currentTimeMillis());
                             poa1.ispisZapisaDnevnika();
                             ParkingApplication.dnevnik.add(poa1);
                             return;
                             //break;
                         case 1:
                             ParkingApplication.auti.remove(auto);
-
-                            PodaciOAutomobilima poa2 = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(), "Vlasnik izlazi autom", "V");
+                            Timestamp vrijeme2 = new Timestamp(System.currentTimeMillis());
+                            PodaciOAutomobilima poa2 = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(),vrijeme2, "Vlasnik izlazi autom", "V");
+                            //poa2.datumIVrijeme(System.currentTimeMillis());
                             poa2.ispisZapisaDnevnika();
                             ParkingApplication.dnevnik.add(poa2);
 
@@ -90,15 +94,18 @@ public class VlasnikDretva extends Thread {
                             return;
                             //break;
                         case 2:
+                            Timestamp vrijeme3 = new Timestamp(System.currentTimeMillis());
                             if (auto.produljiParkiranje()) {      
                                 auto.setNaKolikoSeParkira(auto.getNaKolikoSeParkira()+auto.getZona().getVrijemeParkiranjaUZoni());
                                 ParkingApplication.zone.get(auto.getZona().getBrojZone()-1).dodajparkiranje(1);
-                                PodaciOAutomobilima poa3 = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(), "Produljio je parkiranje", "V");
+                                PodaciOAutomobilima poa3 = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(),vrijeme3, "Produljio je parkiranje", "V");
+                                //poa3.datumIVrijeme(System.currentTimeMillis());
                                 poa3.ispisZapisaDnevnika();
                                 ParkingApplication.dnevnik.add(poa3);
                             }
                             else{
-                                PodaciOAutomobilima poa3 = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(), "Odbijeno produljenje", "V");
+                                PodaciOAutomobilima poa3 = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(),vrijeme3, "Odbijeno produljenje", "V");
+                               // poa3.datumIVrijeme(System.currentTimeMillis());
                                 poa3.ispisZapisaDnevnika();
                                 ParkingApplication.dnevnik.add(poa3);
                             }

@@ -5,6 +5,7 @@
  */
 package thop_zadaca_4.podaci;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,35 +16,35 @@ import java.util.Date;
  */
 public class PodaciOAutomobilima {
 
-    DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss:SSS dd.MM.yyyy");
+    //DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss:SSS dd.MM.yyyy");
     private String tip;
     private Automobil auto;
-    private String vrijeme;
+    private Timestamp vrijeme;
     private int zona;
     private int iznos;
     private String status;
 
-    public PodaciOAutomobilima(Automobil auto, int zona, int iznos, String status, String tip) {
+    public PodaciOAutomobilima(Automobil auto, int zona, int iznos, Timestamp vrijeme, String status, String tip) {
         this.auto = auto;
-        this.vrijeme = datumIVrijeme();
+        this.vrijeme = vrijeme;
         this.tip = tip;
         this.zona = zona;
         this.iznos = iznos;
         this.status = status;
     }
 
-    public String datumIVrijeme() {
-
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
-
+    /*public void datumIVrijeme(long vrijemeDolaska) {
+     Timestamp vrijemeDolaskaTimestamp = new Timestamp(vrijemeDolaska);
+     //Date date = new Date();
+     this.vrijeme = vrijemeDolaskaTimestamp;
+     }*/
     public void ispisZapisaDnevnika() {
         //+ "\tParking na: " + auto.getNaKolikoSeParkira() + " sec"
         if (auto.getZona() != null) {
-            System.out.println(tip + "\tAuto ID: " + auto.getAutomobilID() + "\tVrijeme: " + vrijeme + "    Zona: " + auto.getZona().getBrojZone() + "\tStatus: " + status);
+            System.out.println(tip + "\tAuto ID: " + auto.getAutomobilID() + "\tVrijeme: " + vrijeme + "\tVrijeme: " + auto.getVrijemeParkiranja() + "\tZona: " + auto.getZona().getBrojZone() + "\t\tStatus: " + status);
+        } else {
+            System.out.println(tip + "\tAuto ID: " + auto.getAutomobilID() + "\tVrijeme: " + vrijeme + "\tZona: nema" + "\t\tStatus: " + status);
         }
-        else{System.out.println(tip + "\tAuto ID: " + auto.getAutomobilID() + "\tVrijeme: " + vrijeme + "    Zona: null" + "\tStatus: " + status);}
     }
 
     public Automobil getAuto() {
@@ -54,11 +55,11 @@ public class PodaciOAutomobilima {
         this.auto = auto;
     }
 
-    public String getVrijeme() {
+    public Timestamp getVrijeme() {
         return vrijeme;
     }
 
-    public void setVrijeme(String vrijeme) {
+    public void setVrijeme(Timestamp vrijeme) {
         this.vrijeme = vrijeme;
     }
 

@@ -5,6 +5,7 @@
  */
 package thop_zadaca_4.dretve;
 
+import java.sql.Timestamp;
 import java.util.List;
 import thop_zadaca_4.GeneriranjeSvihVrijednosti;
 import thop_zadaca_4.aplikacija.ParkingApplication;
@@ -84,6 +85,11 @@ public class AutomobilDretva extends Thread {
                     auto.setNaParkiralistu(true);
                     auto.setCijenaKojuPlaca(ParkingApplication.zone.get(odabranaZona - 1).getCijenaParkiranjaUZoni());
                     
+                    long vrijemeDolaska = System.currentTimeMillis();
+                    Timestamp dolazak = new Timestamp(vrijemeDolaska);
+                    
+                    auto.setVrijemeParkiranja(dolazak);
+                    
                     //plaća parkiranje po jedinici vremena u zoni koja se izračunava po formuli ((brojZona + 1 - i) * cijenaJedinice) 
                     int naKolikoSeDugoParkira = (argumenti.get(1) + 1 - odabranaZona) * argumenti.get(7);
                     auto.setNaKolikoSeParkira(naKolikoSeDugoParkira);
@@ -96,7 +102,9 @@ public class AutomobilDretva extends Thread {
                     ParkingApplication.zone.get(odabranaZona - 1).dodajparkiranje(naKolikoSeDugoParkira);
 
                     //spremanje ulaza auta u dnevnik
-                    PodaciOAutomobilima poa = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(), "Dolazak automobila", "A");
+                    PodaciOAutomobilima poa = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(),dolazak, "Dolazak automobila", "A");
+                    //poa.datumIVrijeme(vrijemeDolaska);
+                    //poa.setVrijeme(dolazak);
                     poa.ispisZapisaDnevnika();
                     ParkingApplication.dnevnik.add(poa);
 
@@ -106,8 +114,10 @@ public class AutomobilDretva extends Thread {
                 } else {
                     //ukoliko je zona puna ništa se ne događa i auto samo izlazi sa parkirališta
                     //System.out.println("Zona je puna te auto izlazi iz parkirališta!");
-                    PodaciOAutomobilima poa = new PodaciOAutomobilima(auto, odabranaZona, 0, "Izlaz(ZONA JE PUNA)", "A");
+                    Timestamp dolazak = new Timestamp(System.currentTimeMillis());
+                    PodaciOAutomobilima poa = new PodaciOAutomobilima(auto, odabranaZona, 0,dolazak, "Izlaz(ZONA JE PUNA)", "A");
                     ParkingApplication.zone.get(odabranaZona - 1).odbijenAutomobil();
+                    //poa.datumIVrijeme(System.currentTimeMillis());
                     poa.ispisZapisaDnevnika();
                     ParkingApplication.dnevnik.add(poa);
 
