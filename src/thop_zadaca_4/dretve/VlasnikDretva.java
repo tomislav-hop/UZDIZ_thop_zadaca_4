@@ -92,6 +92,7 @@ public class VlasnikDretva extends Thread {
                         case 2:
                             if (auto.produljiParkiranje()) {      
                                 auto.setNaKolikoSeParkira(auto.getNaKolikoSeParkira()+auto.getZona().getVrijemeParkiranjaUZoni());
+                                ParkingApplication.zone.get(auto.getZona().getBrojZone()-1).dodajparkiranje(1);
                                 PodaciOAutomobilima poa3 = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(), "Produljio je parkiranje", "V");
                                 poa3.ispisZapisaDnevnika();
                                 ParkingApplication.dnevnik.add(poa3);

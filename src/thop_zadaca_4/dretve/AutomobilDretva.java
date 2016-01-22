@@ -94,6 +94,9 @@ public class AutomobilDretva extends Thread {
                     //povećavanja brojaca auta u ozni
                     ParkingApplication.zone.get(odabranaZona - 1).dodajAutoUZonu();
                     auto.setZona(ParkingApplication.zone.get(odabranaZona-1));
+                    
+                    //povecavanje zarade zone
+                    ParkingApplication.zone.get(odabranaZona-1).dodajparkiranje(naKolikoSeDugoParkira);
 
                     //spremanje ulaza auta u dnevnik
                     PodaciOAutomobilima poa = new PodaciOAutomobilima(auto, auto.getZona().getBrojZone(), auto.getCijenaKojuPlaca(), "Dolazak automobila", "A");

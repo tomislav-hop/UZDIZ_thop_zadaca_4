@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package thop_zadaca_4.izbornik;
+package thop_zadaca_4.izbornikCommand;
 
 import java.util.List;
 import thop_zadaca_4.aplikacija.ParkingApplication;
 import static thop_zadaca_4.aplikacija.ParkingApplication.delimiter;
 import thop_zadaca_4.dretve.AutomobilDretva;
+import thop_zadaca_4.ispisi_strategy.OdabirIspisa;
+import thop_zadaca_4.ispisi_strategy.PrviIspis;
 
 /**
  * Klasa koja obrađuje zahtjeve
@@ -16,7 +18,7 @@ import thop_zadaca_4.dretve.AutomobilDretva;
  * @author Tomislav
  */
 public class Opcije {
-
+    
     public void opcija1() {
         System.out.println(delimiter);
         System.out.println("Opcija 1\nParkiralište zatvoreno za nove ulaze automobila");
@@ -35,6 +37,10 @@ public class Opcije {
     public void opcija3() {
         System.out.println(delimiter);
         System.out.println("Opcija 3");
+        
+        OdabirIspisa oi = new OdabirIspisa(new PrviIspis());
+        oi.izvediIspis();
+        
         System.out.println(delimiter);
     }
 

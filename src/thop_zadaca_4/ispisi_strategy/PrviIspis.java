@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package thop_zadaca_4.izbornik;
-
-import java.util.List;
-import thop_zadaca_4.dretve.AutomobilDretva;
+package thop_zadaca_4.ispisi_strategy;
 
 /**
- * Interface za command pattern
  *
  * @author Tomislav
  */
-public interface OdaberiOpciju {
+public class PrviIspis implements Ispis{
 
-    void odaberi();
+    @Override
+    public void ispisiOpciju() {
+        System.out.println("TESTIRANJE");
+    }
+    
 }

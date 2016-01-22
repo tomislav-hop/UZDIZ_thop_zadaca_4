@@ -44,8 +44,13 @@ public class Zona {
         }
     }
 
-    public void dodajparkiranje(int cijenaParkiranja) {
-        zaradaPoParkiranju += cijenaParkiranja;
+    public void dodajparkiranje(int vrijemeParkiranja) {
+        if (vrijemeParkiranja == -1) {
+            zaradaPoParkiranju += cijenaParkiranjaUZoni;
+        } else {
+            int zarada = (vrijemeParkiranja/vrijemeParkiranjaUZoni)*cijenaParkiranjaUZoni;
+            zaradaPoParkiranju += zarada;
+        }
     }
 
     public void dodajKaznu(int kazna) {
